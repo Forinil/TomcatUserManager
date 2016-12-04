@@ -15,6 +15,14 @@
 
     <mvc:resources mapping="/resources/**" location="/WEB-INF/resources/" cache-period="31556926"/>
 
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/view/" p:suffix=".jsp" />
+    <bean id="templateResolver"
+          class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver" p:prefix="/WEB-INF/templates/" p:templateMode="HTML" />
+
+    <bean id="templateEngine"
+          class="org.thymeleaf.spring4.SpringTemplateEngine" p:templateResolver-ref="templateResolver" />
+
+    <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver" p:order="1" p:templateEngine-ref="templateEngine" p:characterEncoding="UTF-8" p:viewNames="*.html" />
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:order="2" p:prefix="/WEB-INF/view/" p:viewNames="*.jsp" />
 
 </beans>

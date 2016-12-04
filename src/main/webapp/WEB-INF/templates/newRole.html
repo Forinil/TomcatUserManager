@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New role</title>
+    <!-- jQuery 1.12.3 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+          integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../resources/css/main.css" data-th-href="@{/resources/less/main.css}" />
+</head>
+<body>
+    <div class="container">
+        <div data-th-replace="index.html :: page-header('Roles list')"></div>
+        <nav data-th-replace="index.html :: navbar"></nav>
+        <form action="#" data-th-action="@{/role/new}" data-th-object="${role}" method="post" class="form-horizontal">
+            <div class="form-group" data-th-fragment="input-text(type, label, field)" data-th-with="type='text',label='Name:',field='roleName'">
+                <label for="roleName" data-th-for="${field}" data-th-inline="text">[[${label}]]</label>
+                <input type="text" data-th-type="${type}" data-th-field="*{__${field}__}" id="roleName" class="form-control" />
+                <div class="panel panel-danger" data-th-if="${#fields.hasErrors('__${field}__')}">
+                    <div class="text-danger bg-danger panel-body">
+                        <th-block data-th-errors="*{__${field}__}"></th-block>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" data-th-fragment="button(type, label)" data-th-with="type='submit',label='Submit'">
+                <div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-1 col-lg-offset-1 col-xs-10 col-sm-10 col-md-11 col-lg-11">
+                    <button type="submit" data-th-type="${type}" class="btn btn-default" data-th-inline="text">[[${label}]]</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

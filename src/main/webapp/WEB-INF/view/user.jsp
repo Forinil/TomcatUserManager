@@ -49,14 +49,6 @@
             <span>Roles</span>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="color: navajowhite">
-            <%--<c:forEach items="${user.userRolesEntities}" var="role">
-                <a href="${spring:mvcUrl('UC#changeRoles').arg(0, user.userName).build()}">
-                    <span id="role_${role.userRolesEntityPK.roleName}">
-                            ${role.userRolesEntityPK.roleName}
-                    </span>
-                </a>
-                <br/>
-            </c:forEach>--%>
             <c:forEach items="${user.rolesEntitySet}" var="role">
                 <a href="${spring:mvcUrl('UC#changeRoles').arg(0, user.userName).build()}">
                     <span id="role_${role}">

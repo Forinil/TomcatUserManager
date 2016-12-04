@@ -39,7 +39,7 @@
             </div>
         </spring:hasBindErrors>
         <c:forEach items="${roles}" var="role">
-            <div id="user_${role.roleName}" class="row">
+            <div id="role_${role.roleName}" class="row">
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="color: navajowhite">
                 <span>
                     <a href="#" onclick="submit('${role.roleName}');">
@@ -49,12 +49,6 @@
                 </span>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="color: navajowhite">
-                    <%--<c:forEach items="${role.rolesEntities}" var="roleEntity">
-                    <span id="role_${roleEntity.usersEntity.userName}">
-                         <a href="${spring:mvcUrl('UC#getUser').arg(0, roleEntity.usersEntity.userName).build()}">${roleEntity.usersEntity.userName}</a>
-                    </span>
-                    <br />
-                    </c:forEach>--%>
                     <c:forEach items="${role.usersEntitySet}" var="roleEntity">
                     <span id="role_${roleEntity.userName}">
                          <a href="${spring:mvcUrl('UC#getUser').arg(0, roleEntity.userName).build()}">${roleEntity.userName}</a>
@@ -62,7 +56,6 @@
                         <br />
                     </c:forEach>
                 </div>
-                <%--<hr style="margin-bottom: 0"/>--%>
             </div>
         </c:forEach>
     </form:form>

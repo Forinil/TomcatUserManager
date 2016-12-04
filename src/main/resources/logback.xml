@@ -42,6 +42,20 @@ See here for more details: http://gordondickens.com/wordpress/2013/03/27/sawing-
 		</encoder>
 	</appender>
 
+	<appender name="ROLLING_FILE_THYMELEAF" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${catalina.home}/logs/user-manager_thymeleaf.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${catalina.home}/logs/user-manager_thymeleaf.%d{yyyy-MM-dd-HH}.%i.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<!-- <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}|%p|%t|%m\n</pattern> -->
+			<pattern>%d %-4relative [%thread] %cn %-5level %logger - %msg %ex%n</pattern>
+		</encoder>
+	</appender>
+
 	<logger name="konrad.tools" level="DEBUG" additivity="false">
 		<appender-ref ref="CONSOLE"/>
 		<appender-ref ref="ROLLING_FILE"/>
@@ -59,6 +73,10 @@ See here for more details: http://gordondickens.com/wordpress/2013/03/27/sawing-
 	<logger name="org.hibernate.type" level="TRACE" additivity="false">
 		<appender-ref ref="CONSOLE"/>
 		<appender-ref ref="ROLLING_FILE_HIBERNATE"/>
+	</logger>
+
+	<logger name="org.thymeleaf" level="TRACE" additivity="false">
+		<appender-ref ref="ROLLING_FILE_THYMELEAF" />
 	</logger>
 	
     <root level="INFO">

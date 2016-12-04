@@ -1,0 +1,82 @@
+@background_color: dodgerblue;
+@secondary_background_color: #4cafff;
+@link_color: #195daf;
+@text_color: #ff9c0c;
+@secondary_text_color: #c0720c;
+
+body {
+  background-color: @background_color;
+}
+
+div {
+  .page-header {
+    color: @text_color;
+  }
+
+  .column {
+    color: @text_color;
+  }
+}
+
+h2.error {
+  color: @text_color;
+  text-align: center;
+}
+
+a {
+  color: @text_color;
+
+  &:hover {
+    color: @text_color;
+  }
+}
+
+.btn-default {
+  color: #777;
+  background: @secondary_background_color none;
+}
+
+hr.index {
+  border-image-outset: 0;
+  border-image-repeat: stretch;
+  border-image-slice: 100%;
+  border-image-source: none;
+  border-image-width: 1;
+  border: 0 none rgb(51, 51, 51);
+  border-top: 1px solid rgb(238, 238, 238);
+}
+
+#navbar > ul > li.dropdown.open > a:hover {
+  background-color: @background_color;
+  color: @secondary_text_color;
+}
+
+#navbar > ul > li.dropdown.open > ul {
+  background-color: @background_color;
+  color: @secondary_text_color;
+  border: 1px solid @secondary_text_color;
+}
+
+ul.dropdown-menu > li > a {
+  color: @secondary_text_color;
+  font-weight: 700;
+}
+
+.navbar-default .navbar-nav > .open > a {
+  background: @background_color none;
+  color: @secondary_text_color;
+  border: 1px solid @secondary_text_color;
+}
+
+.link {
+  color: @link_color;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.menu {
+  background-color: @secondary_background_color;
+  border: double @secondary_text_color;
+}

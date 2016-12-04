@@ -53,7 +53,7 @@ public class UserController extends BaseController {
             model.addAttribute("user", user);
         }
 
-        return "user";
+        return selectView("user");
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
@@ -67,7 +67,7 @@ public class UserController extends BaseController {
 
             model.addAttribute("user", userModel);
             model.addAttribute("roles", roles);
-            return "newUser";
+            return selectView("newUser");
         }
 
         dbUtil.saveUser(userModel);
@@ -84,7 +84,7 @@ public class UserController extends BaseController {
         model.addAttribute("user", user);
         model.addAttribute("roles", roles);
 
-        return "newUser";
+        return selectView("newUser");
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
@@ -111,7 +111,7 @@ public class UserController extends BaseController {
 
         model.addAttribute("user", user);
 
-        return "changePassword";
+        return selectView("changePassword");
     }
 
     @RequestMapping(value = "/{username}/changepassword", method = RequestMethod.POST)
@@ -123,7 +123,7 @@ public class UserController extends BaseController {
 
         if (bindingResult.hasErrors() || !userName.equals(userModel.getUserName())) {
             model.addAttribute("user", userModel);
-            return "changePassword";
+            return selectView("changePassword");
         }
 
         dbUtil.updateUser(userModel);
@@ -143,7 +143,7 @@ public class UserController extends BaseController {
         model.addAttribute("user", user);
         model.addAttribute("roles", roles);
 
-        return "changeRoles";
+        return selectView("changeRoles");
     }
 
     @RequestMapping(value = "/{username}/changeroles", method = RequestMethod.POST)
@@ -158,7 +158,7 @@ public class UserController extends BaseController {
 
             model.addAttribute("user", userModel);
             model.addAttribute("roles", roles);
-            return "changeRoles";
+            return selectView("changeRoles");
         }
 
         dbUtil.updateUser(userModel);

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>user-manager</title>
+    <!-- jQuery 1.12.3 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+          integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../resources/css/main.css" data-th-href="@{/resources/less/main.css}" />
+</head>
+<body>
+<div class="container">
+    <div class="page-header" data-th-fragment="page-header(title)" data-th-with="title='Users list'">
+        <h2 data-th-inline="text">[[${title}]]</h2>
+    </div>
+    <nav class="navbar navbar-default" data-th-fragment="navbar">
+        <div class="container-fluid menu">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed link" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle link bold" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html" data-th-href="@{/users}">List</a></li>
+                            <li><a href="newUser.html" data-th-href="@{/user/new}">New</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle link bold" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Roles<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="roles.html" data-th-href="@{/roles}">List</a></li>
+                            <li><a href="newRole.html" data-th-href="@{/role/new}">New</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="header" class="row" data-th-fragment="table-header(colName1, colName2)" data-th-with="colName1='User',colName2='Roles'">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 h4 column" data-th-inline="text">
+            [[${colName1}]]
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 h4 column" data-th-inline="text">
+            [[${colName2}]]
+        </div>
+    </div>
+    <div data-th-each="user: ${users}" data-th-id="|user_${user.userName}|" class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 column">
+            <a href="user.html" data-th-href="@{/user/{userName}(userName=${user.userName})}" data-th-inline="text">[[${user.userName}]]</a>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 column">
+            <th-block data-th-each="role: ${user.rolesEntitySet}">
+                <span data-th-id="|role_${role.roleName}|" data-th-inline="text">
+                    [[${role.roleName}]]
+                </span>
+                <br />
+            </th-block>
+        </div>
+    </div>
+</div>
+</body>
+</html>

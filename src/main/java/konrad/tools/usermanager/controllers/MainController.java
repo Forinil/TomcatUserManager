@@ -34,7 +34,7 @@ public class MainController extends BaseController {
 
         model.addAttribute("users", users);
 
-        return "index";
+        return selectView("index");
     }
 
     @RequestMapping(value = "/roles", method = RequestMethod.GET)
@@ -46,6 +46,6 @@ public class MainController extends BaseController {
         model.addAttribute("roles", roles);
         model.addAttribute("role", new RoleModel());
 
-        return "roles";
+        return selectView("roles");
     }
 }

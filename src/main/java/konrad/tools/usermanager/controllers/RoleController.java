@@ -41,7 +41,7 @@ public class RoleController extends BaseController {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("role", role);
-            return "newRole";
+            return selectView("newRole");
         }
 
         dbUtil.saveRole(role);
@@ -57,7 +57,7 @@ public class RoleController extends BaseController {
             model.addAttribute("role", new RoleModel());
         }
 
-        return "newRole";
+        return selectView("newRole");
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)

@@ -1,0 +1,74 @@
+body {
+    background-color: dodgerblue;
+}
+
+div.page-header {
+    color: navajowhite;
+}
+
+div.column {
+    color: navajowhite;
+}
+
+h2.error {
+    color: navajowhite;
+    text-align: center;
+}
+
+a {
+    color: navajowhite;
+}
+
+a:hover {
+    color: navajowhite;
+}
+
+.btn-default {
+    color: #777;
+    background: #4cafff none;
+}
+
+hr.index {
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    border-image-source: none;
+    border-image-width: 1;
+    border: 0 none rgb(51, 51, 51);
+    border-top: 1px solid rgb(238, 238, 238);
+}
+
+#navbar > ul > li.dropdown.open > a:hover {
+    background-color: dodgerblue;
+    color: white;
+}
+
+#navbar > ul > li.dropdown.open > ul {
+    background-color: dodgerblue;
+    color: white;
+    border: 1px solid white;
+}
+
+ul.dropdown-menu > li > a {
+    color: white;
+    font-weight: 700;
+}
+
+.navbar-default .navbar-nav > .open > a {
+    background: dodgerblue none;
+    color: white;
+    border: 1px solid white;
+}
+
+.link {
+    color: #195daf;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.menu {
+    background-color: #4cafff;
+    border: double white;
+}

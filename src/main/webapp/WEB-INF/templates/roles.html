@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Roles</title>
+    <!-- jQuery 1.12.3 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+          integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../resources/css/main.css" data-th-href="@{/resources/less/main.css}" />
+    <script type="application/javascript">
+        submit = function (roleName) {
+            console.log(roleName);
+            $("#roleName").val(roleName);
+            $("#role").submit();
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div data-th-replace="index.html :: page-header('Roles list')"></div>
+        <nav data-th-replace="index.html :: navbar"></nav>
+        <div data-th-replace="index.html :: table-header('Role', 'Users')"></div>
+        <form action="#" data-th-action="@{/role/delete}" data-th-object="${role}" method="post" id="role">
+            <input type="hidden" data-th-field="*{roleName}" id="roleName">
+            <div class="panel panel-danger" data-th-if="${#fields.hasErrors('*') or #fields.hasErrors('global')}">
+                <div class="text-danger bg-danger panel-body">
+                    <span data-th-each="err : ${#fields.errors('*')}" data-th-text="${err}">Input is incorrect</span>
+                    <span data-th-each="err : ${#fields.errors('global')}" data-th-text="${err}">Input is incorrect</span>
+                </div>
+            </div>
+            <div data-th-each="role: ${roles}" data-th-id="|role_${role.roleName}|" class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 column">
+                <span data-th-inline="text">
+                    <a href="#" onclick="submit('test');" data-th-attr="onclick=|submit('${role.roleName}');|">
+                        <img src="resources/icons/deletered.png" width="10" height="10" style="width: 10px; height: 10px;"/>
+                    </a>
+                    [[${role.roleName}]]
+                </span>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 column">
+                    <th-block data-th-each="roleEntity: ${role.usersEntitySet}">
+                        <span data-th-id="|role_${roleEntity.userName}|">
+                            <a href="user.html" data-th-href="@{/user/{userName}(userName=${roleEntity.userName})}" data-th-inline="text">[[${roleEntity.userName}]]</a>
+                        </span>
+                        <br />
+                    </th-block>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -15,7 +15,6 @@
 <body style="background-color: darkgoldenrod">
 <style type="text/css">
     hr.index {
-        /*border: 1px inset #eeeeee;*/
         border-image-outset: 0;
         border-image-repeat: stretch;
         border-image-slice: 100%;
@@ -31,17 +30,10 @@
     <page:tableHeader firstColumnName="User" secondColumnName="Roles" />
     <c:forEach items="${users}" var="user">
         <div id="user_${user.userName}" class="row">
-            <%--<spring:url value="/user/${user.userName}" var="url" htmlEscape="true" />--%>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="color: navajowhite">
                     <a href="${spring:mvcUrl('UC#getUser').arg(0, user.userName).build()}">${user.userName}</a>
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="color: navajowhite">
-                <%--<c:forEach items="${user.userRolesEntities}" var="role">
-                    <span id="role_${role.userRolesEntityPK.roleName}">
-                            ${role.userRolesEntityPK.roleName}
-                    </span>
-                    <br />
-                </c:forEach>--%>
                 <c:forEach items="${user.rolesEntitySet}" var="role">
                     <span id="role_${role.roleName}">
                             ${role.roleName}
@@ -49,7 +41,6 @@
                     <br />
                 </c:forEach>
             </div>
-            <%--<hr class="index"/>--%>
         </div>
     </c:forEach>
 </div>
