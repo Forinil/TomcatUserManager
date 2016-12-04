@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- Uncomment and add your base-package here: -->
+    <context:component-scan base-package="konrad.tools"/>
+
+    <bean id="propertyPlaceholder" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" p:systemPropertiesModeName="SYSTEM_PROPERTIES_MODE_OVERRIDE"
+          p:searchSystemEnvironment="true" p:ignoreUnresolvablePlaceholders="true" />
+
+    <bean id="mapper" class="org.dozer.DozerBeanMapper" p:mappingFiles-ref="dozerConfig" p:customConvertersWithId-ref="dozerConverters"/>
+
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean" p:converters-ref="springConverters" />
+
+    <util:set id="springConverters">
+        <ref bean="stringToRolesEntitiesConverter"/>
+    </util:set>
+
+    <util:list id="dozerConfig">
+        <value>dozer/global.xml</value>
+        <value>dozer/userModelToEntityMapping.xml</value>
+    </util:list>
+
+    <util:map id="dozerConverters">
+        <entry key="roleSetConverter" value-ref="rolesToRolesEntitySetConverter" />
+    </util:map>
+</beans>

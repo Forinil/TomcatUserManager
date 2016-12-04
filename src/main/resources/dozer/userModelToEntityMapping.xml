@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+    <mapping>
+        <class-a>konrad.tools.usermanager.hibernate.UsersEntity</class-a>
+        <class-b>konrad.tools.usermanager.models.UserModel</class-b>
+        <field custom-converter-id="roleSetConverter">
+            <a>rolesEntitySet</a>
+            <b>roleNames</b>
+            <a-hint>konrad.tools.usermanager.collections.RolesEntitySet</a-hint>
+            <b-hint>konrad.tools.usermanager.collections.RolesSet</b-hint>
+        </field>
+    </mapping>
+
+</mappings>
