@@ -8,9 +8,9 @@ jdk:
   - oraclejdk8
   - openjdk8
 install:
-  # - ./mvnw dependency:go-offline -DexcludeGroupIds=com.github.forinil
+  # - mvn dependency:go-offline -DexcludeGroupIds=com.github.forinil
   - true
 script:
-  - ./mvnw clean install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+  - mvn clean install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 after_success:
-  - ./mvnw test -B
+  - mvn test -B
