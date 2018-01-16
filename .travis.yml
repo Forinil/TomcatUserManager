@@ -7,6 +7,11 @@ before_cache:
 jdk:
   - oraclejdk8
   - openjdk8
+notifications:
+  slack:
+    rooms:
+      - forinil:a3dT9lopKm3ZUUcbRtVZUQMr#general
+      - forinil:a3dT9lopKm3ZUUcbRtVZUQMr#hateoas-dual-layer   
 install:
   # - mvn dependency:go-offline -DexcludeGroupIds=com.github.forinil
   - true
