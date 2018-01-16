@@ -1,0 +1,21 @@
+language: java
+cache:
+  directories:
+    - "$HOME/.m2"
+before_cache:
+  - rm -rf $HOME/.m2/repository/com/github/forinil
+jdk:
+  - oraclejdk8
+  - openjdk8
+notifications:
+  slack:
+    rooms:
+      - forinil:a3dT9lopKm3ZUUcbRtVZUQMr#general
+      - forinil:a3dT9lopKm3ZUUcbRtVZUQMr#tomcat-user-manager   
+install:
+  # - mvn dependency:go-offline -DexcludeGroupIds=com.github.forinil
+  - true
+script:
+  - mvn clean install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+after_success:
+  - mvn test -B
